@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  WATCHED
+  WANT_WATCH
+}
+
+model Movie {
+  id          Int       @id @default(autoincrement())
+  title       String
+  watchedDate DateTime?
+  status      Status    @default(WANT_WATCH)
+}
+
+model TVSeries {
+  id          Int       @id @default(autoincrement())
+  title       String
+  seasons     Season[]
+  watchedDate DateTime?
+  status      Status    @default(WANT_WATCH)
+}
+
+model Season {
+  id         Int      @id @default(autoincrement())
+  number     Int
+  tvSeriesId Int
+  tvSeries   TVSeries @relation(fields: [tvSeriesId], references: [id])
+}
