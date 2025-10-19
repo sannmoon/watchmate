@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 async function saveMovie(formData: FormData) {
   "use server";
   const title = formData.get("title") as string;
-  const status = formData.get("status") as string;
 
   if (!title) {
     throw new Error("Title is required");

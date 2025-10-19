@@ -60,7 +60,7 @@ export async function toggleStatusWatch(
       },
     });
   } else {
-    const tvSeries = await prisma.tVSeries.update({
+    await prisma.tVSeries.update({
       where: {
         id: Number(id),
       },

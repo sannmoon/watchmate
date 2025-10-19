@@ -1,4 +1,3 @@
-import Link from "next/link";
 import prisma from "@/db";
 import MediaBox from "@/components/MediaBox";
 

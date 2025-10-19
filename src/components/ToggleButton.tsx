@@ -23,20 +23,20 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
     type
   );
 
-  const handleToggleStatus = async (status: "WANT_WATCH" | "WATCHED") => {
-    const response = await fetch(`/api/toggle-status`, {
-      method: "POST",
-      body: JSON.stringify({ id, status, type }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  // const handleToggleStatus = async (status: "WANT_WATCH" | "WATCHED") => {
+  //   const response = await fetch(`/api/toggle-status`, {
+  //     method: "POST",
+  //     body: JSON.stringify({ id, status, type }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
 
-    if (!response.ok) {
-      console.error("Failed to update status");
-    } else {
-    }
-  };
+  //   if (!response.ok) {
+  //     console.error("Failed to update status");
+  //   } else {
+  //   }
+  // };
 
   return (
     <div className="flex justify-center gap-8">

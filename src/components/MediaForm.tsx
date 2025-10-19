@@ -1,11 +1,21 @@
 "use client";
 import React, { useState } from "react";
 
+type MediaStatus = "WANT_WATCH" | "WATCHED";
+type MediaType = "movie" | "tvseries";
+
+interface MediaFormInitialValues {
+  title?: string;
+  status?: MediaStatus;
+  seasons?: number;
+  type?: MediaType;
+}
+
 interface MediaFormProps {
   action: (formData: FormData) => Promise<void>;
   withType?: boolean;
   withStatus?: boolean;
-  initialValues?: any;
+  initialValues?: MediaFormInitialValues;
   buttonText?: string;
 }
 
@@ -16,7 +26,7 @@ export default function MediaForm({
   initialValues,
   buttonText = "Add to Watch List",
 }: MediaFormProps) {
-  const [type, setType] = useState<"movie" | "tvseries">("movie");
+  const [type, setType] = useState<MediaType>(initialValues?.type ?? "movie");
 
   return (
     <div className="flex justify-center items-center min-h-[70vh]">
@@ -35,7 +45,7 @@ export default function MediaForm({
               required
               value={type}
               className="w-full px-3 py-4 bg-[#1E2A4A] rounded-md"
-              onChange={(e) => setType(e.target.value as "movie" | "tvseries")}
+              onChange={(e) => setType(e.target.value as MediaType)}
             >
               <option value="movie">Movie</option>
               <option value="tvseries">TV Series</option>

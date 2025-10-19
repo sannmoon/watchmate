@@ -34,7 +34,7 @@ async function editTVSeriesAction(id: number, formData: FormData) {
 export default async function EditTVSeries({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   async function getTVSeriesData(id: string) {
     try {

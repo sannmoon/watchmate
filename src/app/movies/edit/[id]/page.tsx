@@ -35,13 +35,11 @@ async function getMovieData(id: string) {
 export default async function EditMovie({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { movie } = await getMovieData((await params).id);
-  const editActionWithId = editMovieAction.bind(
-    null,
-    Number((await params).id)
-  );
+  const awaitedParams = await params;
+  const { movie } = await getMovieData(awaitedParams.id);
+  const editActionWithId = editMovieAction.bind(null, Number(awaitedParams.id));
 
   return (
     <>
