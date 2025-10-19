@@ -78,6 +78,7 @@ export async function deleteAction(id: number, type: "movies" | "tvseries") {
   if (type === "movies") {
     await prisma.movie.delete({ where: { id } });
   } else {
+    await prisma.season.deleteMany({ where: { tvSeriesId: id } });
     await prisma.tVSeries.delete({ where: { id } });
   }
 
